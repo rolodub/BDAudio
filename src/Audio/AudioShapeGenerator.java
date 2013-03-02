@@ -29,6 +29,7 @@ public class AudioShapeGenerator implements AudioSignal{
    private float echNum=0;
    private int tempo=0;
    int[][] ampliFreq;
+   int nbBandes=6;
  //  private int nbBandes=6;
 //private int[][] ampliGraph;
 
@@ -36,14 +37,14 @@ public class AudioShapeGenerator implements AudioSignal{
     public void initInternal(float sr){
 
       //tableau des bandes de freq en fonction des pixels horizontaux
-      ampliFreq=new int[ampliGraph.length][ampliGraph[0].length];
+      ampliFreq=new int[ampliGraph.length][nbBandes];
       for (int c=0;c<ampliGraph.length;c++){
             System.arraycopy(ampliGraph[c], 0, ampliFreq[c], 0, ampliGraph[0].length);
           
       }
       sampleRate = (int) sr;
 //    int numBand=0;
-      frequency = new float[ampliGraph[0].length];
+      frequency = new float[nbBandes];
       for(int i=0;i<frequency.length;i++){
         frequency[i] = 200*3*i+1;//freq/seconde
         frequency[i] /= sr;//fréquence par échantillon
@@ -57,7 +58,7 @@ public class AudioShapeGenerator implements AudioSignal{
       ampliFreq=new int[ampliGraph.length][ampliGraph[0].length];
       sampleRate = (int) sr;
 //    int numBand=0;
-    frequency = new float[ampliGraph[0].length];
+    frequency = new float[nbBandes];
      for(int i=0;i<frequency.length;i++){
         frequency[i] = 200*3*i+1;//freq/seconde
         frequency[i] /= sr;//fréquence par échantillon
